@@ -774,8 +774,8 @@
             // ═══════════════════════════════════════════════════════════════════
             // 👤 THÔNG TIN CÁ NHÂN
             // ═══════════════════════════════════════════════════════════════════
-            avatar: "./resources/z6659104423296_197322067afc7e6a232d8ddf71df0b62.jpg",                         // Avatar (emoji hoặc link ảnh)
-            statusBadge: "🧑‍💻=))",                     // Badge trạng thái bên cạnh avatar
+            avatar: '<img src="resources/avatar.jpg">',                         // Avatar (emoji hoặc link ảnh)
+            statusBadge: "=))",                     // Badge trạng thái bên cạnh avatar
             authorName: "trduxng",                    // Tên hiển thị ở footer
             authorLink: "https://www.instagram.com/tr.duxng/",                       // Link tới profile (để trống nếu không có)
             
@@ -931,9 +931,17 @@
 
         // Render profile
         function renderProfile() {
-            document.getElementById('avatarContent').innerHTML = CONFIG.avatar.startsWith('http') 
-                ? `<img src="${CONFIG.avatar}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
-                : CONFIG.avatar;
+            // Đảm bảo ảnh avatar luôn fit khung
+            if (CONFIG.avatar.startsWith('http')) {
+                document.getElementById('avatarContent').innerHTML = `<img src="${CONFIG.avatar}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else if (CONFIG.avatar.includes('<img')) {
+                // Nếu là chuỗi HTML <img ...>, thêm style nếu chưa có
+                let imgHtml = CONFIG.avatar.replace(/<img([^>]*?)style=["'][^"']*["']([^>]*?)>/, '<img$1$2>');
+                imgHtml = imgHtml.replace(/<img([^>]*?)>/, '<img$1 style="width:100%;height:100%;object-fit:cover;border-radius:50%;">');
+                document.getElementById('avatarContent').innerHTML = imgHtml;
+            } else {
+                document.getElementById('avatarContent').innerHTML = CONFIG.avatar;
+            }
             document.getElementById('statusBadge').textContent = CONFIG.statusBadge;
             document.getElementById('storyTitle').innerHTML = CONFIG.storyTitle;
             document.getElementById('storyContent').innerHTML = CONFIG.storyContent;
