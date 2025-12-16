@@ -863,13 +863,13 @@
             // Để mảng rỗng [] nếu chưa có ai donate
             recentDonations: [
                 // Ví dụ (bỏ comment // để sử dụng):
-                // {
-                //     avatar: "😇",                           // Emoji avatar
-                //     name: "Anonymous Developer",            // Tên người donate
-                //     message: "Đồng cảm với dev đồng nghiệp! 💪",  // Lời nhắn
-                //     amount: 100000,                         // Số tiền (không có dấu phẩy)
-                //     time: "2025-12-10 08:30:00"            // Thời gian (YYYY-MM-DD HH:MM:SS)
-                // },
+                {
+                    avatar: "😇",                           // Emoji avatar
+                    name: "Người lạ",            // Tên người donate
+                    message: "cua it long nhieu",  // Lời nhắn
+                    amount: 100000,                         // Số tiền (không có dấu phẩy)
+                    time: "2025-12-16 08:30:00"            // Thời gian (YYYY-MM-DD HH:MM:SS)
+                },
             ],
             
             // ═══════════════════════════════════════════════════════════════════
@@ -1089,7 +1089,8 @@
 
         // Easter egg: Konami code
         let konamiCode = [];
-        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        const konamiSequence = [//'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        ];
         
         document.addEventListener('keydown', (e) => {
             konamiCode.push(e.key);
