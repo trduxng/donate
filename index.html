@@ -1093,24 +1093,20 @@
         ];
         
         document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.key);
-            konamiCode = konamiCode.slice(-10);
+            document.body.style.animation = 'rainbow 1s infinite';
+            showToast('🌈 RAINBOW MODE ACTIVATED! 🌈', '🎮');
             
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                document.body.style.animation = 'rainbow 1s infinite';
-                showToast('🌈 RAINBOW MODE ACTIVATED! 🌈', '🎮');
-                
-                // Add rainbow animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes rainbow {
-                        0% { filter: hue-rotate(0deg); }
-                        100% { filter: hue-rotate(360deg); }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        });
+            // Add rainbow animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes rainbow {
+                    0% { filter: hue-rotate(0deg); }
+                    100% { filter: hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    );
     </script>
 </body>
 </html>
